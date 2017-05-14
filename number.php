@@ -3,9 +3,36 @@
 //use version 5.6
 /*
  * list of number problems:
- * 1. isIntervalOverlap: two interval, check if it is overlapped
- * 2. isSeqSumMatch: whether there is a *continuous sequence* of numbers with a fixed sum value
+ * 1. getMinMax from an array
+ * 2. isIntervalOverlap: two interval, check if it is overlapped
+ * 3. isSeqSumMatch: whether there is a *continuous sequence* of numbers with a fixed sum value
  */
+
+//find min/max from a list of numbers
+echo "\n getMinMax \n";
+$arr = [1, 3, 2, 6, 8, 4, 10];
+echo "input array: ".implode(",", $arr)."\n";
+$result = getMinMax($arr);
+echo "output: min=".$result[0].", max=".$result[1]."\n";
+function getMinMax ($numArr) {
+    if (empty($numArr) || !is_array($numArr)) {
+        return false;
+    }
+    $firstNum = array_shift($numArr);
+    $minNum = $firstNum;
+    $maxNum = $firstNum;
+    While (!empty($numArr)) {
+        $num = array_shift($numArr); //shift an element off from beginning and return the value
+        if ($num < $minNum) {
+            $minNum = $num;
+        }
+        else if ($num > $maxNum) {
+            $maxNum = $num;
+        }
+    }
+    return [$minNum, $maxNum];
+}
+
 /*
  * == isIntervalOverlap ==
  */
