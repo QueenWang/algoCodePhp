@@ -93,7 +93,42 @@ function isSeqSumMatch ($intArr, $sum) {
     return false;
 }
 
-//Given two arrays, return an array that contains all elements that are in the intersection of both
+echo "\n computeParity, odd is 1, even is 0 \n";
+$result = bit_getParity(8);
+echo "result=$result \n";
+//odd count, return 1, even is 0
+function bit_getParity ($num) {
+    $count = 0; //1 bits count
+    while ($num >0) {
+       $count += ($num & 1);
+       $num = ($num >> 1); // //shift to the left, divide by 2
+    }
+    
+    $isOdd = ($count & 1);
+    return $isOdd;
+}
 
-//input: $array1, $array2
-//output: $intersectArr
+
+
+//from kartini
+$result = computeParity(8);
+echo "kartini result=$result \n";
+function computeParity ($num) {
+    $count = 0;
+    while ($num > 0) {
+         echo "debug: ".$num.", binaray=".decbin($num)."\n";
+        $count += ($num & 1); //right most bit 1 count
+        $num = $num >> 1; //shift to the left, divide by 2
+    }
+    echo "debug count=$count count&1=".($count&1)." count^1=".($count^1)." (count%2)=".(count%2)."\n";
+    return ($count & 1);
+}
+
+function computeParity2 ($num) {
+    $parity = 0;
+    while ($num > 0) {
+        $parity = $parity ^ 1;
+        $num = $num & ($num-1);    // Clear the lowest bit “1”
+    }
+    return $parity;
+}
