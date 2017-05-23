@@ -9,6 +9,9 @@
  *  - findPermutationsArrayNoDuplicate: no duplicate, array input
  *  -  findPermutationsStr: with duplicate for string, hashtable to check for duplicates val as key 
  * 4. isPermutable: Given two strings, decide if one is permutation of another: use hash table for frequencey
+ * 5. array intersection and union
+ *  - unsorted array: getIntersectionHash, getUnionHash
+ *  - sorted array:
  */
 
 //use compareString3 function as standard
@@ -144,6 +147,9 @@ echo "test1: $test \n";
 print_r(findPermutationsStr($test));
 echo "\n";
 
+//idea is get one char out and assume (n-1) size result is ready
+//then loop thru each n-1 result, insert the char to each position
+//for strings, use hash table to check duplication
 function findPermutationsStr($string) {
     $strLength = strlen($string);
     if ($strLength == 1) {
@@ -448,7 +454,159 @@ function quicksort_partition (&$array, $startIndex, $endIndex) {
     quicksort_partition($array,  $leftwallIndex+1, $endIndex);
 }
 
-//TODO
-//Given two arrays, return an array that contains all elements that are in the intersection of both
+echo "\n == getIntersection: do not use this slow!! == \n";
+
+$test1 = array("a", "b", "c");
+$test2 = array("d", "e", "c", "b", "a");
+echo "\n";
+print_r(getIntersection($test1, $test2));
+
+//array intersection/union: Given two unsorted arrays, return an array that contains all elements 
+//that are in the intersection of both, ask if elements are unique
 //input: $array1, $array2
 //output: $intersectArr
+//naive idea is to two loops and item in array 1 and array 2, O(M*N)
+//very slow!!! DO NOT use this method
+function getIntersection ($array1, $array2) {
+    $intersection = array();
+    foreach ($array1 as $item1) {
+        foreach ($array2 as $item2) {
+            if ($item1 == $item2) {
+                $intersection[$item2] = $item2;
+            }
+        }
+    }
+    return $intersection;
+}
+
+echo "\n == getIntersectionHash == \n";
+$test1 = array("a", "b", "c");
+$test2 = array("d", "e", "c", "b", "a");
+echo "\n";
+print_r(getIntersectionHash($test1, $test2));
+
+$test1 = array(1, 2, 3, 4);
+$test2 = array(3, 4, 5, 6, 7);
+echo "\n";
+print_r(getIntersectionHash($test1, $test2));
+
+//O(M+N)
+//another method is to sort the smallest array m*logm and then each item in N binary search existence in the sorted array
+//m*logm + n*logm, complexity is bigger than O(M+N)
+function getIntersectionHash ($array1, $array2) {
+    //$array1Flip = array_flip($array1); //use value as key for fast search
+    $array1Flip = array();
+    foreach ($array1 as $index => $item1) {
+        $array1Flip[$item1] = $item1;
+    }
+    $intersection = array();
+    foreach ($array2 as $item2) {
+        if (isset($array1Flip[$item2])) {
+            $intersection[$item2] = $item2;
+        }
+    }
+    return $intersection;
+}
+
+echo "\n == getUnionHash == \n";
+$test1 = array("a", "b", "c");
+$test2 = array("d", "e", "c", "b", "a");
+echo "\n";
+print_r(getUnionHash($test1, $test2));
+
+$test1 = array(1, 2, 3, 4);
+$test2 = array(3, 4, 5, 6, 7);
+echo "\n";
+print_r(getUnionHash($test1, $test2));
+//O(M+N)
+function getUnionHash ($array1, $array2) {
+    $union = array();
+    foreach ($array1 as $index => $item1) {
+        $union[$item1] = $item1;
+    }
+    
+    foreach ($array2 as $item2) {
+        if (!isset($union[$item2])) {
+            $union[$item2] = $item2;
+        }
+    }
+    return $union;
+}
+
+echo "\n == getSortedIntersection == \n";
+$test1 = array(1, 2, 3, 4);
+$test2 = array(3, 4, 5, 6, 7);
+echo "\n";
+print_r(getSortedIntersection($test1, $test2));
+
+//naive idea, loop thru two array one time and compare elements and get intersection
+//assume distinct items
+//O(m+n)
+function getSortedIntersection ($array1, $array2) {
+    $i = 0;
+    $j = 0;
+    $intersection = array();
+    while($i<count($array1) && $j<count($array2)) {
+        if ($array1[$i] == $array2[$j]) {
+            $intersection[] = $array1[$i];
+            $i++;
+            $j++;
+        }
+        else if ($array1[$i] < $array2[$j]) {
+            $i++;
+        }
+        else {
+            $j++;
+        }
+    }
+    //no need to consider left over part since this is an intersection
+    return $intersection;
+}
+
+echo "\n == getSortedUnion == \n";
+$test1 = array(1, 2, 3, 4);
+$test2 = array(3, 4, 5, 6, 7);
+echo "\n";
+print_r(getSortedUnion($test1, $test2));
+
+//O(M+N)
+function getSortedUnion ($array1, $array2) {
+    $i = 0;
+    $j = 0;
+    $union = array();
+    while($i<count($array1) && $j<count($array2)) { //similar with merge sort merge left sorted and right sorted
+        if ($array1[$i] == $array2[$j]) {
+            $union[] = $array1[$i];
+            $i++;
+            $j++;
+        }
+        else if ($array1[$i] < $array2[$j]) {
+            $union[] = $array1[$i];
+            $i++;
+        }
+        else {
+            $union[] = $array2[$j];
+            $j++;
+        }
+    }
+    //handle left over
+    while ($i < count($array1)) {
+        $union[] = $array1[$i];
+        $i++;
+    }
+    while ($j < count($array2)) {
+        $union[] = $array2[$j];
+        $j++;
+    }
+    return $union;
+}
+
+//if m << n, one array size is much smaller, use binary search to search if element exist in the smaller set
+//n*log(m)
+function getSortedIntersectionBSearch ($array1, $array2) {
+    $i = 0;
+    $j = 0;
+    $intersection = array();
+
+    return $intersection;
+}

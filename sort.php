@@ -6,11 +6,11 @@
  * list of sort problems:
  * 1. quick sort: in place sorting, set a pivot (normally middle number or meidum num), move pivot to start first element, 
  *      keep left wall index, swap with the start element. Use this leftwall index as partition and recurse
- * 
+ *      use quicksort3 for implementation, leftwall concept, easier to understand
+ * 1.2 QuickSelect: based on quick sort, to get kth smallest/largest number, 
  * 2. merge sort: divide to half array_slice, merge left and right sorted array 
  * 3. bubble sort: in place, not efficient. adjacement comparison, push the largest to the end. Loop again
  * 4. inserstion srot: in place, not efficient. sorted and unsorted list, element comparing with each item in front
- * 5. selection sort: select the smallest item and swap to append to the sorted list
  */
 $arr = array( 6,1,3,7,5,2,3,4,45,5,4,75,8,6,78,7980890,2,4,2,432,5,34,5634,34,5); 
 echo "\n input array: ".implode(',',$arr)."\n";

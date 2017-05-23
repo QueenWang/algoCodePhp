@@ -6,6 +6,7 @@
  * 1. getMinMax from an array
  * 2. isIntervalOverlap: two interval, check if it is overlapped
  * 3. isSeqSumMatch: whether there is a *continuous sequence* of numbers with a fixed sum value
+ * 4. get kth smallest/largest number
  */
 
 //find min/max from a list of numbers
@@ -131,4 +132,12 @@ function computeParity2 ($num) {
         $num = $num & ($num-1);    // Clear the lowest bit “1”
     }
     return $parity;
+}
+
+
+//get kth smallest from an unsorted array
+//idea1: sort the array and then get $k-1 index element, n*logn
+//idea2: if array is very big, then 
+function getSmallest ($array, $k) {
+    
 }
