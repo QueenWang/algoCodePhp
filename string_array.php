@@ -610,3 +610,34 @@ function getSortedIntersectionBSearch ($array1, $array2) {
 
     return $intersection;
 }
+
+
+echo "\n == isPalindrome == \n";
+$test = 'abcba';
+echo "input $test : ".(isPalindrome($test) ? "YES" :"NO")."\n";
+$test = '111';
+echo "input $test : ".(isPalindrome($test) ? "YES" :"NO")."\n";
+$test = '1';
+echo "input $test : ".(isPalindrome($test) ? "YES" :"NO")."\n";
+$test = '22';
+echo "input $test : ".(isPalindrome($test) ? "YES" :"NO")."\n";
+$test = '123';
+echo "input $test : ".(isPalindrome($test) ? "YES" :"NO")."\n";
+
+
+//回文字符串，google interview
+//eg. abcba, 121, return true
+//abcd, false
+//asked me why i didnt use for instead of while?? hmm都可以的
+function isPalindrome ($string) {
+    $i = 0;
+    $j = strlen($string)-1;
+    while ($i < $j) {
+        if ($string[$i] != $string[$j]) {
+            return false;
+        }
+        $i++;
+        $j--;
+    }
+    return true;      
+}
