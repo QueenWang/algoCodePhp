@@ -163,7 +163,7 @@ function quicksort2 (&$numArr, $startIndex, $endIndex) {
 
 /*
  * two pointers from start and from end-1, placeholder concept:
- * use last item as pivot, search 1st half, swap if find an element > pivot. Now pivot is in first half, seach last half. 
+ * use last item as pivot(支点), search 1st half, swap if find an element > pivot. Now pivot is in first half, seach last half. 
  * until $i <j stop
  */
 function quicksort (&$numArr, $startIndex, $endIndex) {
