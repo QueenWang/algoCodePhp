@@ -4,8 +4,6 @@
 $arr = [-1,0,1,2,-1,-4];
 echo "\n input array: ".implode(',',$arr)."\n";
 
-$target = 9;
-
 echo "\n == three sum algo == \n";
 $solution = new Solution();
 $result1 = $solution->threeSum($arr); //use pointer, which will change the origional array 
