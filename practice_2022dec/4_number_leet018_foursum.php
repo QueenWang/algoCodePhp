@@ -1,7 +1,7 @@
 <?php
 // command line php xx.php
 
-echo "\n == three sum algo == \n";
+echo "\n == four sum algo == \n";
 $arr = [1,0,-1,0,-2,2];
 $target = 0;
 echo "\n input array: ".implode(',',$arr)."\n";
@@ -11,7 +11,7 @@ echo "\n target: ".$target."\n";
 $solution = new Solution();
 $result1 = $solution->fourSum($arr, $target); //use pointer, which will change the origional array 
 if (!empty($result1)) {
-    echo "three sum result:". json_encode($result1)."\n";
+    echo "four sum result:". json_encode($result1)."\n";
 }
 else {
     echo "result is empty";
@@ -24,7 +24,7 @@ echo "\n input array: ".implode(',',$arr2)."\n";
 echo "\n target: ".$target2."\n";
 $result2 = $solution->fourSum($arr2, $target2); //use pointer, which will change the origional array 
 if (!empty($result2)) {
-    echo "three sum result:". json_encode($result2)."\n";
+    echo "four sum result:". json_encode($result2)."\n";
 }
 else {
     echo "result is empty";
