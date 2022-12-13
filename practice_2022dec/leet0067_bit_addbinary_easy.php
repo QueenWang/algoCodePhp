@@ -33,6 +33,7 @@ class Solution {
      */
     function addBinary($a, $b) {
         //thought 1: converting binary to decimal(integer) then sum, then converting baack, not working properly
+        //这个方法不适用，原因主要是data type intger/decimal 都是有最大限制的， how many bits，超过这个限制就没办法了
         //运算的精细度问题,因此，为了适用于长度较大的字符串计算，我们应该使用更加健壮的算法。
         //考虑基本的加法实现，从最末尾开始，每2进一
         $aLen = strlen($a);
