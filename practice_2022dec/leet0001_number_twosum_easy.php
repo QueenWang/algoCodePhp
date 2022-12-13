@@ -34,7 +34,7 @@ class Solution {
      */
     function twoSum($nums, $target) {
         //traverse each number, check if numbers behind sum
-        //inner loop only check numbers afterwards
+        //inner loop only check numbers afterwards, as before number is arleady checked
         //time complexity is O(N2), N square
         //space is O(1)
         for ($i=0; $i<count($nums)-1; $i++) {

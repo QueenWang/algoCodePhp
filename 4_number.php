@@ -95,6 +95,13 @@ function isSeqSumMatch ($intArr, $sum) {
     return false;
 }
 
+
+/**
+ * Note below parity codes only works for positive number
+ * negative ones bits has two's compliment, and can not use value conidtion.
+ * ==> check bit length instead
+ * basics_bit_parity
+ */
 echo "\n computeParity, odd is 1, even is 0 \n";
 $result = bit_getParity(8);
 echo "result=$result \n";
