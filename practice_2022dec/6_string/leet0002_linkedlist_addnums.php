@@ -60,7 +60,7 @@ class Solution {
         //naive idea is for each node, loop until both lists -> next is null
         
         $carry = 0;
-        $resultList = new ListNode(0); //object is passing by reference
+        $resultList = new ListNode(0); //object is passing by reference,sentinel node concept
         $currentNode = $resultList;
         //$resultArr = [];
         while (isset($l1) || isset($l2) || $carry == 1) { //cover last number sum>10, link list might only have 1 item
