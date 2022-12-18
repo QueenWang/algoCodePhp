@@ -59,7 +59,8 @@ class Solution {
     
     /*
      * IMP, sorting implements this like php array sort
-     * concept: taking one value (eg. start) as pivot value, partition into two sets smaller numbers(leftwall index), keep swaping
+     * concept: taking one value (eg. start) as pivot value, 
+     * partition into two sets smaller numbers(leftwall index), keep swaping
      * swap pivot value with leftwall
      * split into two parts using the index, loop to do this
      */
