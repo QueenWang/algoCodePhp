@@ -14,6 +14,7 @@ class Solution {
     function maxArea ($height) {
         //using two pointers, 1 from left and 1 from right
         // area = min(hi, hj) * (j-i), next pointer move away from the lower value to find potential max
+        //https://leetcode.cn/problems/container-with-most-water/solutions/11491/container-with-most-water-shuang-zhi-zhen-fa-yi-do/?orderBy=most_relevant
         $max = 0;
         $count = count($height);
         
